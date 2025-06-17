@@ -1,0 +1,25 @@
+# Backend framework
+fastapi
+uvicorn
+
+# File upload & parsing
+python-multipart
+pypdf
+python-docx
+
+# Core language models & embeddings
+openai
+tiktoken
+
+# LangChain core & community modules (useful for embedding & RAG)
+langchain
+langchain-community
+
+# Vector database
+chromadb
+
+# Env variable handling
+python-dotenv
+
+# Data validation
+pydantic

@@ -1,0 +1,3 @@
+Hello, this is a test file.
+It has only a few lines.
+This will be embedded and stored.

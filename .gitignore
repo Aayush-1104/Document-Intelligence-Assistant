@@ -1,0 +1,16 @@
+# ⛔ Don't track secrets
+.env
+
+# ⛔ Don't track Python cache
+__pycache__/
+*.py[cod]
+
+# ⛔ Don't track virtual env
+venv/
+
+# ⛔ Ignore VSCode settings (optional but recommended)
+.vscode/
+
+# ⛔ OS-generated files
+.DS_Store
+Thumbs.db
