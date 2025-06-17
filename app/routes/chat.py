@@ -10,15 +10,9 @@ class ChatRequest(BaseModel):
 @router.post("/chat")
 def chat_with_documents(request: ChatRequest):
     try:
-        print("🧠 Received query:", request.query)
-
         chunks = get_similar_chunks(request.query)
-        print("🔍 Retrieved chunks:", len(chunks))
-
-        context = "\n".join(chunks)
+        context = "\n\n".join([chunk["chunk"] for chunk in chunks])
         answer = ask_groq(request.query, context)
-
-        print("✅ Groq answered.")
 
         return {
             "query": request.query,
@@ -27,8 +21,9 @@ def chat_with_documents(request: ChatRequest):
         }
 
     except Exception as e:
-        print("❌ Error:", str(e))
+        print("❌ Chat error:", str(e))
         raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.get("/groq-test")
 def test_groq():

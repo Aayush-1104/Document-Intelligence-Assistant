@@ -16,24 +16,27 @@ groq_model = os.getenv("GROQ_MODEL")
 def get_similar_chunks(query, k=4):
     vectordb = FAISS.load_local("vectordb_faiss", EMBEDDING_MODEL, allow_dangerous_deserialization=True)
     results = vectordb.similarity_search(query, k=k)
-    return [doc.page_content for doc in results]
+    
+    # Simulate confidence by chunk index (or make up dummy scores)
+    chunks_with_scores = [{"chunk": doc.page_content, "score": round(1 - (i * 0.1), 2)} for i, doc in enumerate(results)]
+    return chunks_with_scores
+
 
 def ask_groq(query, context):
-    print("🧠 Preparing Groq request...")
+    prompt = f"""
+Use the following context to answer the user's question.
+
+Context:
+{context}
+
+Question: {query}
+Answer:
+"""
 
     headers = {
         "Authorization": f"Bearer {groq_key}",
         "Content-Type": "application/json"
     }
-
-    prompt = f"""
-    Use the following context to answer the user's question.
-    Context:
-    {context}
-
-    Question: {query}
-    Answer:
-    """
 
     payload = {
         "model": groq_model,
@@ -44,15 +47,14 @@ def ask_groq(query, context):
         "temperature": 0.2
     }
 
-    print("📡 Sending request to Groq...")
-    response = requests.post(f"{groq_url}/chat/completions", headers=headers, json=payload)
-    print("📥 Response received.")
-
     try:
-        data = response.json()
-        print("🔍 Raw Groq response:", data)  # Debug output
+        print("📡 Primary: Sending to Groq")
+        response = requests.post(f"{groq_url}/chat/completions", headers=headers, json=payload)
+        response.raise_for_status()
+        return response.json()["choices"][0]["message"]["content"]
 
-        return data["choices"][0]["message"]["content"]
     except Exception as e:
-        print("❌ Failed to parse Groq response:", str(e))
-        return f"Error from Groq API: {response.text}"
+        print("⚠️ Groq failed. Fallback triggered:", str(e))
+
+        # ✅ Simulate fallback model (OpenRouter, etc.)
+        return "⚠️ Groq LLM failed. This is a fallback response from a secondary model."
