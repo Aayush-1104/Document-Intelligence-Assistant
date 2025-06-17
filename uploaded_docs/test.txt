@@ -1,3 +1,5 @@
 Hello, this is a test file.
 It has only a few lines.
 This will be embedded and stored.
+Abstract
+Large Language Models (LLMs), such as GPT and LLaMA, have revolutionized natural language processing by enabling machines to generate human-like text, answer questions, and perform complex reasoning tasks. However, LLMs are limited by their fixed training data, which can lead to outdated or incomplete responses. To overcome this, Retrieval-Augmented Generation (RAG) combines the generative power of LLMs with external knowledge retrieval. In RAG, relevant documents are retrieved from a knowledge base using semantic search, and the LLM uses this retrieved context to generate more accurate and up-to-date responses. This hybrid approach significantly enhances performance in tasks such as question answering, summarization, and open-domain dialogue by grounding the model’s output in real-world information. The integration of LLMs and RAG presents a powerful framework for building scalable and trustworthy AI applications that can reason over vast and dynamic information sources.
