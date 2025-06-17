@@ -4,6 +4,7 @@ load_dotenv()
 from fastapi import FastAPI
 from app.routes import upload, chat
 
+# For backend
 app = FastAPI(
     title="Document Intelligence Assistant",
     description="Upload documents and ask questions using RAG + Groq LLM",
