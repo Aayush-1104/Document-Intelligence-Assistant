@@ -1,25 +1,31 @@
-# Backend framework
+# Backend
 fastapi
 uvicorn
 
+# Streamlit UI
+streamlit
+
 # File upload & parsing
 python-multipart
-pypdf
+pypdf2
 python-docx
 
-# Core language models & embeddings
-openai
-tiktoken
+# Core embeddings
+sentence-transformers
+faiss-cpu
 
-# LangChain core & community modules (useful for embedding & RAG)
+# LangChain
 langchain
 langchain-community
+langchain-core
+langchain-huggingface
 
-# Vector database
-chromadb
+# LLM API
+requests
 
-# Env variable handling
+# Env handling
 python-dotenv
 
 # Data validation
 pydantic
+
