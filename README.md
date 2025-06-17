@@ -49,7 +49,7 @@ A full-stack GenAI-powered assistant that ingests documents (PDF, TXT, DOCX), ge
 ```
 ├── app
 │   ├── routes         # FastAPI route handlers (upload, chat)
-│   ├── services       # Core logic (embedding, file handling, RAG)
+│   ├── services       # Core logic (embedding, file_handler, semantic_search)
 │   └── main.py        # FastAPI entrypoint
 ├── streamlit_app.py   # Frontend
 ├── vectordb_faiss     # Saved FAISS index
